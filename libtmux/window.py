@@ -457,10 +457,10 @@ class Window(TmuxMappingObject, TmuxRelationalObject):
         panes = self.server._update_panes()._panes
 
         panes = [
-            p for p in panes if p['session_id'] == self.get('session_id')
+            p for p in panes if p.get('session_id', -1) == self.get('session_id')
         ]
         panes = [
-            p for p in panes if p['window_id'] == self.id
+            p for p in panes if p.get('window_id', -1) == self.id
         ]
         return panes
 
